@@ -4,15 +4,13 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const mongoConnection = require("./helps/dbConfig");
 
-
 // routes
 const authRoutes = require("./routes/auth");
 const channelRoutes = require("./routes/channels");
 const videoRoutes = require("./routes/videos");
 const uploadRoutes = require("./routes/uploads");
 const commentRoutes = require("./routes/comments");
-const historyRoutes = require("./routes/history")
-
+const historyRoutes = require("./routes/history");
 
 // const Demo = require("./models/Demo");
 
@@ -24,7 +22,12 @@ const PORT = process.env.SERVER_PORT || 5001;
 //middlewares
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({ origin: ["http://localhost:5173",'https://vid-share-frontend.vercel.app'], credentials: true }));
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://vid-share-frontend.vercel.app"],
+    credentials: true,
+  })
+);
 
 // static files
 app.use(express.static("assets"));
@@ -39,9 +42,7 @@ app.use("/api/channels", channelRoutes);
 app.use("/api/videos", videoRoutes);
 app.use("/api/uploads", uploadRoutes);
 app.use("/api/comments", commentRoutes);
-app.use("/api/history",historyRoutes)
-
-
+app.use("/api/history", historyRoutes);
 
 app.listen(PORT, () => {
   mongoConnection();
