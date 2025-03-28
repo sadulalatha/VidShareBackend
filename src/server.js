@@ -24,7 +24,7 @@ const PORT = process.env.SERVER_PORT || 5001;
 //middlewares
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({ origin: [process.env.CLIENT_URL,'https://vid-share-frontend.vercel.app'], credentials: true }));
+app.use(cors({ origin: ["http://localhost:5173",'https://vid-share-frontend.vercel.app'], credentials: true }));
 
 // static files
 app.use(express.static("assets"));
